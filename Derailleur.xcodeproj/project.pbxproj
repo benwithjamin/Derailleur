@@ -17,7 +17,6 @@
 		B5085FEA24634D4F0041A5DF /* BluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FE924634D4F0041A5DF /* BluetoothManager.m */; };
 		B5085FEF24636DE40041A5DF /* StatusDot.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FEE24636DE40041A5DF /* StatusDot.m */; };
 		B5085FF1246395A40041A5DF /* BikeData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FF0246395A40041A5DF /* BikeData.m */; };
-		B5085FF32464D6A40041A5DF /* README in Resources */ = {isa = PBXBuildFile; fileRef = B5085FF22464D6A40041A5DF /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 		B5085FED24636DE40041A5DF /* StatusDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusDot.h; sourceTree = "<group>"; };
 		B5085FEE24636DE40041A5DF /* StatusDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusDot.m; sourceTree = "<group>"; };
 		B5085FF0246395A40041A5DF /* BikeData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeData.m; sourceTree = "<group>"; };
-		B5085FF22464D6A40041A5DF /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +83,6 @@
 				B5085FD2246253540041A5DF /* Info.plist */,
 				B5085FD3246253540041A5DF /* main.m */,
 				B5085FD5246253540041A5DF /* Derailleur.entitlements */,
-				B5085FF22464D6A40041A5DF /* README */,
 			);
 			path = Derailleur;
 			sourceTree = "<group>";
@@ -181,7 +178,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5085FF32464D6A40041A5DF /* README in Resources */,
 				B5085FCE246253540041A5DF /* Assets.xcassets in Resources */,
 				B5085FD1246253540041A5DF /* MainMenu.xib in Resources */,
 			);
@@ -342,6 +338,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = "0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -361,6 +358,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = "0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

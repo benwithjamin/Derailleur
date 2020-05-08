@@ -5,5 +5,12 @@ A macOS app (for now) built to display the data from Flywheel at Home bikes with
 
 I created this app to give new life to the Flywheel bike taking up a large amount of space in my tiny San Francisco apartment.
 
-![Screenshot of Derailleur in action]
-(screenshot.png)
+# Okay, how do I use it?
+
+If you want to tinker with the code, go forth and do so. Otherwise, head to Releases and download the latest stable release.
+
+Just start the app and it will automatically look for your Flywheel bike - make sure your Bluetooth is turned on and you've turned the pedals to activate the Bluetooth in the bike.
+
+![Screenshot of Derailleur in action](screenshot.png)
+# If you have any issues...
+Please create a new issue and describe the problem. I've shied away from Objective-C for a long time, but the long lockdown nights gave me some spare time to throw this together. It may not work perfectly for you.
