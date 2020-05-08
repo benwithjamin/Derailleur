@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B5085FCC246253510041A5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FCB246253510041A5DF /* AppDelegate.m */; };
+		B5085FCE246253540041A5DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5085FCD246253540041A5DF /* Assets.xcassets */; };
+		B5085FD1246253540041A5DF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5085FCF246253540041A5DF /* MainMenu.xib */; };
+		B5085FD4246253540041A5DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FD3246253540041A5DF /* main.m */; };
+		B5085FDE246281910041A5DF /* DerailleurMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FDD246281910041A5DF /* DerailleurMainView.m */; };
+		B5085FE224628D870041A5DF /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FE124628D870041A5DF /* NSView+Extensions.m */; };
+		B5085FE5246293A30041A5DF /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FE4246293A30041A5DF /* NSColor+Extensions.m */; };
+		B5085FEA24634D4F0041A5DF /* BluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FE924634D4F0041A5DF /* BluetoothManager.m */; };
+		B5085FEF24636DE40041A5DF /* StatusDot.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FEE24636DE40041A5DF /* StatusDot.m */; };
+		B5085FF1246395A40041A5DF /* BikeData.m in Sources */ = {isa = PBXBuildFile; fileRef = B5085FF0246395A40041A5DF /* BikeData.m */; };
+		B5085FF32464D6A40041A5DF /* README in Resources */ = {isa = PBXBuildFile; fileRef = B5085FF22464D6A40041A5DF /* README */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B5085FC7246253510041A5DF /* Derailleur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Derailleur.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5085FCA246253510041A5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B5085FCB246253510041A5DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B5085FCD246253540041A5DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5085FD0246253540041A5DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B5085FD2246253540041A5DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5085FD3246253540041A5DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B5085FD5246253540041A5DF /* Derailleur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Derailleur.entitlements; sourceTree = "<group>"; };
+		B5085FDC246281910041A5DF /* DerailleurMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DerailleurMainView.h; sourceTree = "<group>"; };
+		B5085FDD246281910041A5DF /* DerailleurMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DerailleurMainView.m; sourceTree = "<group>"; };
+		B5085FE02462878D0041A5DF /* NSView+LayoutAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSView+LayoutAdditions.h"; sourceTree = "<group>"; };
+		B5085FE124628D870041A5DF /* NSView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+Extensions.m"; sourceTree = "<group>"; };
+		B5085FE4246293A30041A5DF /* NSColor+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extensions.m"; sourceTree = "<group>"; };
+		B5085FE6246293B30041A5DF /* NSColor+DerailleurColours.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+DerailleurColours.h"; sourceTree = "<group>"; };
+		B5085FE824634D4F0041A5DF /* BluetoothManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
+		B5085FE924634D4F0041A5DF /* BluetoothManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluetoothManager.m; sourceTree = "<group>"; };
+		B5085FEB246367470041A5DF /* BikeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BikeData.h; sourceTree = "<group>"; };
+		B5085FEC246367750041A5DF /* BluetoothStatuses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothStatuses.h; sourceTree = "<group>"; };
+		B5085FED24636DE40041A5DF /* StatusDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusDot.h; sourceTree = "<group>"; };
+		B5085FEE24636DE40041A5DF /* StatusDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusDot.m; sourceTree = "<group>"; };
+		B5085FF0246395A40041A5DF /* BikeData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeData.m; sourceTree = "<group>"; };
+		B5085FF22464D6A40041A5DF /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5085FC4246253510041A5DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B5085FBE246253510041A5DF = {
+			isa = PBXGroup;
+			children = (
+				B5085FC9246253510041A5DF /* Derailleur */,
+				B5085FC8246253510041A5DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B5085FC8246253510041A5DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5085FC7246253510041A5DF /* Derailleur.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5085FC9246253510041A5DF /* Derailleur */ = {
+			isa = PBXGroup;
+			children = (
+				B5085FE724634D130041A5DF /* Bluetooth */,
+				B5085FDF246287700041A5DF /* Extensions */,
+				B5085FDB246281700041A5DF /* UI */,
+				B5085FCA246253510041A5DF /* AppDelegate.h */,
+				B5085FCB246253510041A5DF /* AppDelegate.m */,
+				B5085FCD246253540041A5DF /* Assets.xcassets */,
+				B5085FCF246253540041A5DF /* MainMenu.xib */,
+				B5085FD2246253540041A5DF /* Info.plist */,
+				B5085FD3246253540041A5DF /* main.m */,
+				B5085FD5246253540041A5DF /* Derailleur.entitlements */,
+				B5085FF22464D6A40041A5DF /* README */,
+			);
+			path = Derailleur;
+			sourceTree = "<group>";
+		};
+		B5085FDB246281700041A5DF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B5085FDC246281910041A5DF /* DerailleurMainView.h */,
+				B5085FDD246281910041A5DF /* DerailleurMainView.m */,
+				B5085FED24636DE40041A5DF /* StatusDot.h */,
+				B5085FEE24636DE40041A5DF /* StatusDot.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B5085FDF246287700041A5DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5085FE6246293B30041A5DF /* NSColor+DerailleurColours.h */,
+				B5085FE4246293A30041A5DF /* NSColor+Extensions.m */,
+				B5085FE02462878D0041A5DF /* NSView+LayoutAdditions.h */,
+				B5085FE124628D870041A5DF /* NSView+Extensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B5085FE724634D130041A5DF /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				B5085FEB246367470041A5DF /* BikeData.h */,
+				B5085FF0246395A40041A5DF /* BikeData.m */,
+				B5085FE824634D4F0041A5DF /* BluetoothManager.h */,
+				B5085FE924634D4F0041A5DF /* BluetoothManager.m */,
+				B5085FEC246367750041A5DF /* BluetoothStatuses.h */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5085FC6246253510041A5DF /* Derailleur */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5085FD8246253540041A5DF /* Build configuration list for PBXNativeTarget "Derailleur" */;
+			buildPhases = (
+				B5085FC3246253510041A5DF /* Sources */,
+				B5085FC4246253510041A5DF /* Frameworks */,
+				B5085FC5246253510041A5DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Derailleur;
+			productName = Derailleur;
+			productReference = B5085FC7246253510041A5DF /* Derailleur.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5085FBF246253510041A5DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = Benwithjamin;
+				TargetAttributes = {
+					B5085FC6246253510041A5DF = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+				};
+			};
+			buildConfigurationList = B5085FC2246253510041A5DF /* Build configuration list for PBXProject "Derailleur" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5085FBE246253510041A5DF;
+			productRefGroup = B5085FC8246253510041A5DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5085FC6246253510041A5DF /* Derailleur */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5085FC5246253510041A5DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5085FF32464D6A40041A5DF /* README in Resources */,
+				B5085FCE246253540041A5DF /* Assets.xcassets in Resources */,
+				B5085FD1246253540041A5DF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5085FC3246253510041A5DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5085FDE246281910041A5DF /* DerailleurMainView.m in Sources */,
+				B5085FE5246293A30041A5DF /* NSColor+Extensions.m in Sources */,
+				B5085FF1246395A40041A5DF /* BikeData.m in Sources */,
+				B5085FE224628D870041A5DF /* NSView+Extensions.m in Sources */,
+				B5085FD4246253540041A5DF /* main.m in Sources */,
+				B5085FEA24634D4F0041A5DF /* BluetoothManager.m in Sources */,
+				B5085FEF24636DE40041A5DF /* StatusDot.m in Sources */,
+				B5085FCC246253510041A5DF /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B5085FCF246253540041A5DF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5085FD0246253540041A5DF /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B5085FD6246253540041A5DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B5085FD7246253540041A5DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B5085FD9246253540041A5DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Derailleur/Derailleur.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BY2JKFEKFA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Derailleur/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5085FDA246253540041A5DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Derailleur/Derailleur.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BY2JKFEKFA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Derailleur/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5085FC2246253510041A5DF /* Build configuration list for PBXProject "Derailleur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5085FD6246253540041A5DF /* Debug */,
+				B5085FD7246253540041A5DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5085FD8246253540041A5DF /* Build configuration list for PBXNativeTarget "Derailleur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5085FD9246253540041A5DF /* Debug */,
+				B5085FDA246253540041A5DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B5085FBF246253510041A5DF /* Project object */;
+}
