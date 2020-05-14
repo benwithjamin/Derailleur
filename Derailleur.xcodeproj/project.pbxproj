@@ -331,6 +331,7 @@
 				CODE_SIGN_ENTITLEMENTS = Derailleur/Derailleur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BY2JKFEKFA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Derailleur/Info.plist;
@@ -338,8 +339,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = "0.1-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.derailleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -351,6 +352,7 @@
 				CODE_SIGN_ENTITLEMENTS = Derailleur/Derailleur.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BY2JKFEKFA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Derailleur/Info.plist;
@@ -358,8 +360,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = "0.1-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.Derailleur;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benwithjamin.derailleur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

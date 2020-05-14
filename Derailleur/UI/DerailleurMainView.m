@@ -37,9 +37,6 @@
 {
 	self = [super init];
 	if (self) {
-		_bluetoothManager = [[BluetoothManager alloc] init];
-		[_bluetoothManager setDelegate:self];
-		
 		[self setupViews];
 		[self setupLayout];
 	}
@@ -211,6 +208,7 @@
 			break;
 			
 		case BIKE_CONNECTED:
+		case BIKE_NEEDS_CALIBRATION:
 			[_statusDot stopFlashing];
 			[_statusDot setColour: GREEN];
 			break;

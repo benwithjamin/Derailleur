@@ -25,10 +25,13 @@
 #define BluetoothManager_h
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 #import "BikeData.h"
 #import "BluetoothStatuses.h"
+
+#define SCAN_TIMEOUT		60
+#define CONNECT_TIMEOUT 	60
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,10 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 @interface BluetoothManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (nonatomic, weak) id <BluetoothManagerDelegate> delegate;
+
+- (void) startConnectAttempt;
+- (void) disconnectBike;
 
 @end
 

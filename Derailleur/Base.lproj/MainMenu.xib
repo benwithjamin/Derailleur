@@ -10,7 +10,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -26,8 +26,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
-                            <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Services" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
@@ -66,6 +64,23 @@
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Bike" id="TNt-nD-TW0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Bike" id="4TI-0g-zFp">
+                        <items>
+                            <menuItem title="Connect" keyEquivalent="C" id="Rvd-tC-bGt">
+                                <connections>
+                                    <action selector="startConnect:" target="Voe-Tx-rLC" id="lK1-yW-Xpc"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Disconnect" enabled="NO" keyEquivalent="D" id="S0N-Dw-JpK">
+                                <connections>
+                                    <action selector="disconnect:" target="Voe-Tx-rLC" id="eLf-bp-3zr"/>
                                 </connections>
                             </menuItem>
                         </items>

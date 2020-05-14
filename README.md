@@ -9,7 +9,7 @@ I created this app to give new life to the Flywheel bike taking up a large amoun
 
 If you want to tinker with the code, go forth and do so. Otherwise, head to Releases and download the latest stable release.
 
-Just start the app and it will automatically look for your Flywheel bike - make sure your Bluetooth is turned on and you've turned the pedals to activate the Bluetooth in the bike.
+Just start the app and it will automatically look for your Flywheel bike - make sure your Bluetooth is turned on and you've turned the pedals to activate the Bluetooth in the bike. If you've never used your Flywheel bike before, make sure you have inserted the batteries in the compartment by the pedals - the Bluetooth is actually powered by these batteries and not the AC adapter.
 
 ![Screenshot of Derailleur in action](screenshot.png)
 # If you have any issues...

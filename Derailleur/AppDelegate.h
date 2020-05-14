@@ -22,9 +22,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BluetoothManager.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+@property (nonatomic, strong) NSWindow *window;
+@property (nonatomic, strong) IBOutlet NSMenuItem *_connectBikeButton;
+@property (nonatomic, strong) IBOutlet NSMenuItem *_disconnectBikeButton;
+
+@property (nonatomic, strong) BluetoothManager *bluetoothManager;
+
+- (IBAction)startConnect:(id)sender;
+- (IBAction)disconnect:(id)sender;
 
 @end
 

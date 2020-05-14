@@ -25,11 +25,15 @@
 #import "BikeData.h"
 
 @implementation BluetoothManager
+{
+	/* CoreBluetooth properties */
+	CBCentralManager *_centralManager;
+	CBPeripheral *_connectedPeripheral;
+	CBCharacteristic *_currentCharacteristic;
 
-/* CoreBluetooth properties */
-CBCentralManager *_centralManager;
-CBPeripheral *_connectedPeripheral;
-CBCharacteristic *_currentCharacteristic;
+	/* Connection timer */
+	NSTimer *_pollTimer;
+}
 
 /* General properties */
 int dataPacketLength;
@@ -63,13 +67,41 @@ BikeDataframe bikeData;
 			break;
 			
 		case CBManagerStatePoweredOn:
-			[_delegate didUpdateStatus:BLUETOOTH_POWERED_ON_SCANNING];
-			[_centralManager scanForPeripheralsWithServices:nil options:nil];
+			[self startConnectAttempt];
 			break;
 			
 		default:
 			break;
 	}
+}
+
+/* Start to try to connect to Flywheel bikes. Times out after 60 seconds. */
+- (void)startConnectAttempt
+{
+	[_delegate didUpdateStatus:BLUETOOTH_POWERED_ON_SCANNING];
+	[_centralManager scanForPeripheralsWithServices:nil options:nil];
+	
+	_pollTimer = [NSTimer scheduledTimerWithTimeInterval:SCAN_TIMEOUT target:self selector:@selector(didTimeoutWhileScanning) userInfo:nil repeats:NO];
+}
+
+/* Disconnect from the Flywheel bike, if it is connected */
+- (void)disconnectBike
+{
+	if (_connectedPeripheral != nil)
+	{
+		[_delegate didUpdateStatus:BIKE_DISCONNECT_REQUEST];
+		[_centralManager cancelPeripheralConnection:_connectedPeripheral];
+		_connectedPeripheral = nil;
+	}
+}
+
+/* Called if and when the Bluetooth scan does not find a Flywheel bike */
+- (void)didTimeoutWhileScanning
+{
+	[_delegate didUpdateStatus:BIKE_UNABLE_TO_DISCOVER];
+	[_pollTimer invalidate];
+	
+	[_centralManager stopScan];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
@@ -82,15 +114,28 @@ BikeDataframe bikeData;
 	}
 	
 	if ([[deviceName lowercaseString] containsString:@"flywheel"]) {
+		[_pollTimer invalidate];
 		[_centralManager stopScan];
 		
 		_connectedPeripheral = peripheral;
 		_connectedPeripheral.delegate = self;
 		
 		[_centralManager connectPeripheral:_connectedPeripheral options:nil];
+		_pollTimer = [NSTimer scheduledTimerWithTimeInterval:CONNECT_TIMEOUT target:self selector:@selector(didTimeoutWhileConnecting) userInfo:nil repeats:NO];
 		
 		[_delegate didUpdateStatus:BIKE_DISCOVERED];
+	} else {
+		/* Let's log this so we can see what devices were found other than Flywheel bikes... */
+		
 	}
+}
+
+- (void)didTimeoutWhileConnecting
+{
+	[_delegate didUpdateStatus:BIKE_UNABLE_TO_CONNECT];
+	[_pollTimer invalidate];
+	
+	[_centralManager cancelPeripheralConnection:_connectedPeripheral];
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -98,6 +143,7 @@ BikeDataframe bikeData;
 	if (peripheral == _connectedPeripheral) {
 		[_connectedPeripheral discoverServices: @[[CBUUID UUIDWithString:ICG_SERVICE_UUID]]];
 		[_delegate didUpdateStatus:BIKE_CONNECTED];
+		[_pollTimer invalidate];
 	}
 }
 
@@ -204,9 +250,9 @@ void decodeReceivedData(char buffer[], int size)
 			return;
 		}
 		
-		// TODO: Aggregated data and calibration
 		if (bikeData.message_id == BRAKE_CALIBRATION_RESET) {
-			
+			[_delegate didUpdateStatus:BIKE_NEEDS_CALIBRATION];
+			return;
 		}
 		
 		if (bikeData.message_id == SEND_ICG_AGGREGATED_STREAM_DATA) {
@@ -214,9 +260,7 @@ void decodeReceivedData(char buffer[], int size)
 		}
 		
 		if (bikeData.message_id == REQUEST_DISCONNECT) {
-			[_delegate didUpdateStatus:BIKE_DISCONNECT_REQUEST];
-			[_centralManager cancelPeripheralConnection:_connectedPeripheral];
-			_connectedPeripheral = nil;
+			[self disconnectBike];
 			return;
 		}
 		

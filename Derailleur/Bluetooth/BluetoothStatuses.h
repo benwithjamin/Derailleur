@@ -37,6 +37,7 @@
 #define BIKE_MESSAGE_UNKNOWN			0x09
 #define BIKE_CONNECTED					0x0A
 #define BIKE_CONNECTED_RECEIVING		0x0B
+#define BIKE_NEEDS_CALIBRATION			0x0C
 
 static const char *STATUS_MESSAGES[] = {
 	"Bluetooth is powered off. Power it on in System Preferences to continue.",
@@ -44,13 +45,14 @@ static const char *STATUS_MESSAGES[] = {
 	"Bluetooth use is unauthorised. You may lack the required privileges.",
 	"Bluetooth is not supported on this device.",
 	"Flywheel bike discovered. Attempting to connect...",
-	"Unable to connect to your Flywheel bike in 60 seconds",
-	"No Flywheel bikes found. Start pedaling to activate the Bluetooth in the bike.",
+	"Could not connect to your Flywheel bike within 60 seconds",
+	"No Flywheel bikes found. Start pedaling to activate the bike's Bluetooth.",
 	"An unknown error has occurred",
-	"Received a disconnect request from your Flywheel bike",
+	"Disconnected from your Flywheel bike successfully",
 	"Your bike sent a message that could not be understood",
 	"Connected to your Flywheel bike. Waiting for data",
-	"Connected to your Flywheel bike. Receiving data"
+	"Connected to your Flywheel bike. Receiving data",
+	"Your bike needs to be calibrated"
 };
 
 #endif /* BluetoothStatuses_h */

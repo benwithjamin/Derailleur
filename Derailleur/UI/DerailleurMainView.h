@@ -41,8 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTextField *statusLabel;
 @property (nonatomic, strong) StatusDot *statusDot;
 
-@property (nonatomic, strong) BluetoothManager* bluetoothManager;
-
 @end
 
 NS_ASSUME_NONNULL_END

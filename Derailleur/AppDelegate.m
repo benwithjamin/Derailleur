@@ -27,12 +27,6 @@
 #import "DerailleurMainView.h"
 #import "NSColor+DerailleurColours.h"
 
-@interface AppDelegate ()
-
-@property (nonatomic, strong) NSWindow *window;
-
-@end
-
 @implementation AppDelegate
 {
 	IOPMAssertionID preventSleepAssertion;
@@ -55,6 +49,10 @@
 	
 	[_window makeKeyAndOrderFront:nil];
 	
+	/* Setup BluetoothManager here rather than in DerailleurMainView */
+	_bluetoothManager = [[BluetoothManager alloc] init];
+	[_bluetoothManager setDelegate: [_window contentView]];
+	
 	/* Prevent display from sleeping until the application closes */
 	IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn, CFSTR("Derailleur displaying data"), &preventSleepAssertion);
 }
@@ -68,5 +66,14 @@
 	return YES;
 }
 
+- (void)startConnect:(id)sender
+{
+	[_bluetoothManager startConnectAttempt];
+}
+
+- (void)disconnect:(id)sender
+{
+	[_bluetoothManager disconnectBike];
+}
 
 @end
