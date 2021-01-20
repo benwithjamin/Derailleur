@@ -27,13 +27,15 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (nonatomic, strong) NSWindow *window;
-@property (nonatomic, strong) IBOutlet NSMenuItem *_connectBikeButton;
-@property (nonatomic, strong) IBOutlet NSMenuItem *_disconnectBikeButton;
+@property (nonatomic, strong) IBOutlet NSMenuItem *_debugModeMenuItem;
 
 @property (nonatomic, strong) BluetoothManager *bluetoothManager;
 
+- (IBAction)toggleDebugMode:(id)sender;
 - (IBAction)startConnect:(id)sender;
 - (IBAction)disconnect:(id)sender;
+- (IBAction)calibrateMinimum:(id)sender;
+- (IBAction)calibrateMaximum:(id)sender;
 
 @end
 

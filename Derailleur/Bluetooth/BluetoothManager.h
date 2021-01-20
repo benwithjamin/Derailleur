@@ -44,10 +44,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BluetoothManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+@property (nonatomic) BOOL debugMode;
 @property (nonatomic, weak) id <BluetoothManagerDelegate> delegate;
 
 - (void) startConnectAttempt;
 - (void) disconnectBike;
+
+- (void) setMinimumCalibrationLevel;
+- (void) setMaximumCalibrationLevel;
+
+//- (void) queryCalibrationState;
+//- (void) resetBikeCalibration;
 
 @end
 

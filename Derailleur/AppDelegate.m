@@ -43,7 +43,12 @@
 	[_window setMovableByWindowBackground:YES];
 	[_window setTitleVisibility:NSWindowTitleHidden];
 	[_window setTitlebarAppearsTransparent:YES];
-	[_window setAppearance:[NSAppearance appearanceNamed: NSAppearanceNameDarkAqua]];
+	if (@available(macOS 10.14, *)) {
+		[_window setAppearance:[NSAppearance appearanceNamed: NSAppearanceNameDarkAqua]];
+	} else {
+		// Fallback on earlier versions
+		[_window setAppearance:[NSAppearance appearanceNamed: NSAppearanceNameVibrantDark]];
+	}
 	
 	[_window setContentView: [[DerailleurMainView alloc] init]];
 	
@@ -66,6 +71,19 @@
 	return YES;
 }
 
+- (void)toggleDebugMode:(id)sender
+{
+	BOOL newMode = !_bluetoothManager.debugMode;
+	
+	[_bluetoothManager setDebugMode: newMode];
+	
+	if (newMode) {
+		[__debugModeMenuItem setState:NSControlStateValueOn];
+	} else {
+		[__debugModeMenuItem setState:NSControlStateValueOff];
+	}
+}
+
 - (void)startConnect:(id)sender
 {
 	[_bluetoothManager startConnectAttempt];
@@ -74,6 +92,16 @@
 - (void)disconnect:(id)sender
 {
 	[_bluetoothManager disconnectBike];
+}
+
+- (void)calibrateMinimum:(id)sender
+{
+	[_bluetoothManager setMinimumCalibrationLevel];
+}
+
+- (void)calibrateMaximum:(id)sender
+{
+	[_bluetoothManager setMaximumCalibrationLevel];
 }
 
 @end

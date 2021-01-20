@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,7 +11,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
+            <connections>
+                <outlet property="_debugModeMenuItem" destination="UJo-IX-HSL" id="c1m-Y3-soT"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -78,9 +82,29 @@
                                     <action selector="startConnect:" target="Voe-Tx-rLC" id="lK1-yW-Xpc"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Disconnect" enabled="NO" keyEquivalent="D" id="S0N-Dw-JpK">
+                            <menuItem title="Disconnect" keyEquivalent="D" id="S0N-Dw-JpK">
                                 <connections>
                                     <action selector="disconnect:" target="Voe-Tx-rLC" id="eLf-bp-3zr"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="1th-7v-rhY"/>
+                            <menuItem title="Calibrate Brake Minimum" id="fft-xn-kco">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="calibrateMinimum:" target="Voe-Tx-rLC" id="4M3-kJ-41b"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Calibrate Brake Maximum" id="V8c-Uq-1N8">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="calibrateMaximum:" target="Voe-Tx-rLC" id="2dw-fQ-vCt"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="YTI-pZ-yJK"/>
+                            <menuItem title="Enable debug mode" id="UJo-IX-HSL">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleDebugMode:" target="Voe-Tx-rLC" id="bXC-hT-6iz"/>
                                 </connections>
                             </menuItem>
                         </items>

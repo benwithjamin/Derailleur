@@ -29,7 +29,8 @@
 	/* CoreBluetooth properties */
 	CBCentralManager *_centralManager;
 	CBPeripheral *_connectedPeripheral;
-	CBCharacteristic *_currentCharacteristic;
+	CBCharacteristic *_dataCharacteristic;
+	CBCharacteristic *_commandCharacteristic;
 
 	/* Connection timer */
 	NSTimer *_pollTimer;
@@ -41,6 +42,10 @@ int dataPacketIndex;
 DecoderErrorState errorState;
 DecoderRXState rxState;
 BikeDataframe bikeData;
+
+bool calibrationInProgress = false;
+
+NSURL *logURL;
 
 - (instancetype) init
 {
@@ -72,6 +77,27 @@ BikeDataframe bikeData;
 			
 		default:
 			break;
+	}
+}
+
+- (void)setDebugMode:(BOOL)debugMode
+{
+	_debugMode = debugMode;
+	
+	if (debugMode)
+	{
+		NSSavePanel *savePanel = [NSSavePanel savePanel];
+		[savePanel setNameFieldStringValue:@"derailleur.log"];
+		[savePanel setMessage:@"Select where you'd like Derailleur to save its log file"];
+		[savePanel setShowsTagField:NO];
+		
+		[savePanel beginWithCompletionHandler:^(NSModalResponse result) {
+			if (result == NSModalResponseOK)
+			{
+				logURL = [savePanel URL];
+				[[NSFileManager defaultManager] createFileAtPath:[logURL path] contents:nil attributes:nil];
+			}
+		}];
 	}
 }
 
@@ -125,8 +151,7 @@ BikeDataframe bikeData;
 		
 		[_delegate didUpdateStatus:BIKE_DISCOVERED];
 	} else {
-		/* Let's log this so we can see what devices were found other than Flywheel bikes... */
-		
+		/* TODO: Let's log this so we can see what devices were found other than Flywheel bikes... */
 	}
 }
 
@@ -163,14 +188,82 @@ BikeDataframe bikeData;
 	for (CBCharacteristic* characteristic in service.characteristics)
 	{
 		if (characteristic.properties & CBCharacteristicPropertyNotify) {
-			[peripheral setNotifyValue:YES forCharacteristic:characteristic];
-			
-			if ([[characteristic.UUID UUIDString] isEqual:ICG_RX_UUID]) {
-				_currentCharacteristic = characteristic;
-				[_delegate didUpdateStatus:BIKE_CONNECTED_RECEIVING];
+			/** This is the characteristic where we get data from the bike */
+			if ([[characteristic.UUID UUIDString] isEqual:ICG_DATA_CHARACTERISTIC_UUID]) {
+				_dataCharacteristic = characteristic;
+				[peripheral setNotifyValue:YES forCharacteristic:characteristic];
+			}
+		} else if (characteristic.properties & CBCharacteristicPropertyWrite) {
+			/** This is the characteristic where we can send commands to the bike */
+			if ([[characteristic.UUID UUIDString] isEqual:ICG_CMD_CHARACTERISTIC_UUID]) {
+				_commandCharacteristic = characteristic;
 			}
 		}
 	}
+	
+	/** Only if both characteristics are found should we connect, otherwise there should be an error */
+	if (_dataCharacteristic != nil && _commandCharacteristic != nil) {
+		[_delegate didUpdateStatus:BIKE_CONNECTED_RECEIVING];
+		
+		[self queryCalibrationState];
+	}
+}
+
+uint8_t calculateChecksum(uint8_t buffer[], int size)
+{
+	uint8_t checksum = 0;
+	
+	for (int i = 1; i < size; i++) {
+		checksum = (uint8_t) (buffer[i] ^ checksum);
+	}
+	
+	return checksum;
+}
+
+/** Wrapper for sending a command to the bike */
+- (void) sendCommand:(ICGMessageType)commandType withData:(NSData *)data
+{
+	NSMutableData *messageData = [[NSMutableData alloc] init];
+	
+	uint8_t messageHeader[] = { -1, data.length + 2, commandType };
+	uint8_t checksum[] = { calculateChecksum(messageHeader, sizeof(messageHeader)) };
+	uint8_t endOfMessage[] = { 0x55 };
+	
+	[messageData appendBytes:messageHeader length:sizeof(messageHeader)];
+	[messageData appendBytes:checksum length:1];
+	[messageData appendBytes:endOfMessage length:1];
+	
+	[_connectedPeripheral writeValue:messageData forCharacteristic:_commandCharacteristic type:CBCharacteristicWriteWithResponse];
+}
+
+/** Send a message to the bike asking whether it is calibrated or not */
+- (void) queryCalibrationState
+{
+	[self sendCommand:BRAKE_CAL_DATA withData:nil];
+}
+
+/** Send a message to the bike asking to reset calibration */
+- (void) resetBikeCalibration
+{
+	[self sendCommand:BRAKE_CALIBRATION_RESET withData:nil];
+}
+
+/** Send a message to the bike setting the minimum brake calibration level */
+- (void) setMinimumCalibrationLevel
+{
+	[self sendCommand:BRAKE_CAL_MIN withData:nil];
+}
+
+/** Send a message to the bike setting the maximum brake calibration level */
+- (void) setMaximumCalibrationLevel
+{
+	[self sendCommand:BRAKE_CAL_MAX withData:nil];
+}
+
+/** DEBUG FUNC */
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+	NSLog(@"wrote value");
 }
 
 void decodeReceivedData(char buffer[], int size)
@@ -240,23 +333,30 @@ void decodeReceivedData(char buffer[], int size)
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
 	NSData *receivedData = characteristic.value;
+	
 	decodeReceivedData((char *)receivedData.bytes, (int)receivedData.length);
 	
+	if (_debugMode) {
+		NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:[logURL path]];
+		[handle seekToEndOfFile];
+		[handle writeData:receivedData];
+		[handle closeFile];
+	}
+	
 	if (errorState == MSG_COMPLETE) {
-		ICGLiveStreamData *parsedData = (ICGLiveStreamData*) bikeData.buffer;
-		
+		/** The bike is sending exercise data */
 		if (bikeData.message_id == SEND_ICG_LIVE_STREAM_DATA) {
+			ICGLiveStreamData *parsedData = (ICGLiveStreamData*) bikeData.buffer;
 			[_delegate didReceiveData:parsedData];
 			return;
 		}
 		
-		if (bikeData.message_id == BRAKE_CALIBRATION_RESET) {
-			[_delegate didUpdateStatus:BIKE_NEEDS_CALIBRATION];
+		/** The bike is responding with calibration data */
+		if (bikeData.message_id == BRAKE_CAL_DATA) {
+			if ((bikeData.buffer[4] & 255) == 0) {
+				[_delegate didUpdateStatus:BIKE_NEEDS_CALIBRATION];
+			}
 			return;
-		}
-		
-		if (bikeData.message_id == SEND_ICG_AGGREGATED_STREAM_DATA) {
-			
 		}
 		
 		if (bikeData.message_id == REQUEST_DISCONNECT) {
